@@ -1,7 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://bftne6yibc02y"]
+[gd_scene load_steps=11 format=3 uid="uid://bftne6yibc02y"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_s7tj6"]
 [ext_resource type="Material" uid="uid://cyljdkll28hwj" path="res://Prefab Textures/Prototype1.tres" id="1_x8efe"]
+[ext_resource type="Texture2D" uid="uid://dbridygr1susi" path="res://Prototype Textures/Orange/texture_10.png" id="2_vu81o"]
+[ext_resource type="Material" uid="uid://kgogs8yiubfl" path="res://Prefab Textures/OrangePrototype.tres" id="3_mvnnu"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_l2erd"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -15,6 +17,9 @@ background_mode = 2
 sky = SubResource("Sky_5a7iy")
 tonemap_mode = 2
 glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aiwii"]
+albedo_texture = ExtResource("2_vu81o")
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_pmvsy"]
 
@@ -30,17 +35,28 @@ shadow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_wb2hs")
 
-[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+[node name="PlayArea" type="CSGCombiner3D" parent="."]
 use_collision = true
 
-[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
+[node name="CSGBox3D" type="CSGBox3D" parent="PlayArea"]
 transform = Transform3D(65.0984, 0, 0, 0, 8.45199, 0, 0, 0, 62.97, 0, 3.17301, 0)
 material = ExtResource("1_x8efe")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D/CSGBox3D"]
+[node name="CSGBox3D" type="CSGBox3D" parent="PlayArea/CSGBox3D"]
 transform = Transform3D(0.918423, 0, 0, 0, 0.830752, 0, 0, 0, 0.947626, 0, 0.0876032, 0)
 operation = 2
 material = ExtResource("1_x8efe")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="PlayArea"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -8.38435, 0.590863, 0)
+material_override = SubResource("StandardMaterial3D_aiwii")
+size = Vector3(1, 0.639648, 1)
+material = ExtResource("3_mvnnu")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="PlayArea"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -8.38435, 1.42587, 11.3977)
+size = Vector3(1, 0.441406, 1)
+material = ExtResource("3_mvnnu")
 
 [node name="Player" type="CharacterBody3D" parent="."]
 script = ExtResource("1_s7tj6")
