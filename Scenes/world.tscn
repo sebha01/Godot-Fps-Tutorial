@@ -18,6 +18,7 @@ glow_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q01o6"]
 albedo_texture = ExtResource("1_xfgvx")
+uv1_scale = Vector3(0.1, 0.1, 0.1)
 uv1_triplanar = true
 uv1_world_triplanar = true
 uv2_triplanar = true
@@ -41,7 +42,7 @@ environment = SubResource("Environment_wb2hs")
 use_collision = true
 
 [node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
-transform = Transform3D(65.2377, 0, 0, 0, 0.996318, 0, 0, 0, 63.1047, 0, 0, 0)
+transform = Transform3D(65.0984, 0, 0, 0, 0.99419, 0, 0, 0, 62.97, 0, 0, 0)
 material = SubResource("StandardMaterial3D_q01o6")
 
 [node name="Player" type="CharacterBody3D" parent="."]
