@@ -7,6 +7,11 @@ const SENSITIVITY = 0.003
 
 var gravity = 9.8
 
+#bob variabels
+const BOB_FREQ = 2.0
+const BOB_AMP = 0.058
+var t_bob = 0.0 
+
 @onready var head = $Head
 @onready var camera = $Head/Camera3D
 
@@ -39,4 +44,14 @@ func _physics_process(delta):
 		velocity.x = 0.0
 		velocity.z = 0.0
 
+	#head bob
+	t_bob += delta * velocity.length() * float(is_on_floor())
+	camera.transform.origin = _headbob(t_bob)
+
 	move_and_slide()
+
+func _headbob(time)->Vector3:
+	var pos = Vector3.ZERO
+	pos.y = sin(time * BOB_FREQ) * BOB_AMP
+	pos.x = cos(time * BOB_FREQ / 2) * BOB_AMP
+	return pos
