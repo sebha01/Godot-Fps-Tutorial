@@ -1,7 +1,8 @@
 extends CharacterBody3D
 
-
-const SPEED = 10.0
+var speed 
+const WALK_SPEED = 10.0
+const SPRINT_SPEED = 20.0
 const JUMP_VELOCITY = 6.5
 const SENSITIVITY = 0.003
 
@@ -33,16 +34,25 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("Jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 
+	#HANDLE SPRINT
+	if Input.is_action_pressed("Sprint"):
+		speed = SPRINT_SPEED
+	else:
+		speed = WALK_SPEED
+
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir = Input.get_vector("Left", "Right", "Up", "Down")
 	var direction = (head.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
+	if is_on_floor:
+		if direction:
+			velocity.x = direction.x * speed
+			velocity.z = direction.z * speed
+		else:
+			velocity.x = 0.0
+			velocity.z = 0.0
 	else:
-		velocity.x = 0.0
-		velocity.z = 0.0
+		velocity.x = lerp(velocity.x, direction.x * speed, delta * 2.0)
 
 	#head bob
 	t_bob += delta * velocity.length() * float(is_on_floor())
