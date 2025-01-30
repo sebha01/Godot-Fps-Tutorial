@@ -35,25 +35,29 @@ shadow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_wb2hs")
 
-[node name="PlayArea" type="CSGCombiner3D" parent="."]
+[node name="MainMap" type="CSGBox3D" parent="."]
+visible = false
+size = Vector3(1000, 0, 1000)
+
+[node name="PrototypePlayArea" type="CSGCombiner3D" parent="."]
 use_collision = true
 
-[node name="CSGBox3D" type="CSGBox3D" parent="PlayArea"]
+[node name="CSGBox3D" type="CSGBox3D" parent="PrototypePlayArea"]
 transform = Transform3D(65.0984, 0, 0, 0, 8.45199, 0, 0, 0, 62.97, 0, 3.17301, 0)
 material = ExtResource("1_x8efe")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="PlayArea/CSGBox3D"]
+[node name="CSGBox3D" type="CSGBox3D" parent="PrototypePlayArea/CSGBox3D"]
 transform = Transform3D(0.918423, 0, 0, 0, 0.830752, 0, 0, 0, 0.947626, 0, 0.0876032, 0)
 operation = 2
 material = ExtResource("1_x8efe")
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="PlayArea"]
+[node name="CSGBox3D2" type="CSGBox3D" parent="PrototypePlayArea"]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -8.38435, 0.590863, 0)
 material_override = SubResource("StandardMaterial3D_aiwii")
 size = Vector3(1, 0.639648, 1)
 material = ExtResource("3_mvnnu")
 
-[node name="CSGBox3D3" type="CSGBox3D" parent="PlayArea"]
+[node name="CSGBox3D3" type="CSGBox3D" parent="PrototypePlayArea"]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -8.38435, 1.42587, 11.3977)
 size = Vector3(1, 0.441406, 1)
 material = ExtResource("3_mvnnu")
